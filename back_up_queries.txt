@@ -1,0 +1,71 @@
+CREATE TABLE PERSON(
+     person_ID int(9) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+     last_Name varchar(30) NOT NULL,
+     first_Name varchar(50) NOT NULL,
+     middle_Name varchar(30),
+     extension_Name varchar(6),
+     Sex char(1) NOT NULL,
+     birth_Date date NOT NULL,
+     age int(2) NOT NULL,
+     home_Address varchar(75) NOT NULL,
+     civil_Status char(10) NOT NULL,
+     religion varchar(20) NOT NULL,
+     nationality varchar(50) NOT NULL,
+     boarding_Address varchar(100) NOT NULL,
+     contact_Number char(11),
+     email_Address varchar(25) NOT NULL
+);
+
+========================================================================
+
+CREATE TABLE EMPLOYEE(
+     employee_ID int(9) PRIMARY KEY AUTO_INCREMENT,
+     person_ID int(9)  NOT NULL,
+	 date_Started datetime NOT NULL,
+     rank varchar(20),
+     FOREIGN KEY (person_ID) REFERENCES PERSON(person_ID)
+);
+
+CREATE TABLE POSITION (
+  Position_ID int(3) PRIMARY KEY AUTO_INCREMENT,
+  Position_Name varchar(30) NOT NULL
+);
+
+
+CREATE TABLE DESIGNATION(
+  Designation_ID int(3) PRIMARY KEY AUTO_INCREMENT,
+  Position_ID int(3) NOT NULL,
+  Employee_ID int(9) NOT NULL,
+  FOREIGN KEY (`Position_ID`) REFERENCES `position` (`Position_ID`),
+  FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`)
+);
+
+CREATE TABLE USER_ACCOUNT(
+  Account_ID int(9) PRIMARY KEY AUTO_INCREMENT,
+  Password varchar(20) NOT NULL,
+  person_ID int(9) NOT NULL,
+  FOREIGN KEY (`person_ID`) REFERENCES `person` (`person_ID`)
+);
+
+
+CREATE TABLE STUDENT(
+    student_ID varchar(11) PRIMARY KEY NOT NULL,
+	year char(4)NOT NULL,
+	student_Level varchar(20)NOT NULL,
+    Taking varchar(50) NOT NULL,
+	person_ID int(9)NOT NULL,
+	FOREIGN KEY (`person_ID`) REFERENCES `person` (`person_ID`)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
